@@ -19,18 +19,27 @@
     {% assign pages_list = site.pages | sort:"url" %}
     {% for node in pages_list %}
       {% if node.title != null %}
-        {% if node.layout == "page" %}
+        <!-- {% if node.layout == "page" %} -->
           <a class="sidebar-nav-item{% if page.url == node.url %} active{% endif %}" href="{{ node.url }}">{{ node.title }}</a>
         {% endif %}
       {% endif %}
     {% endfor %}
 
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a>
-    <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a>
+    {% assign post_list = site.posts %}
+    {% for post in post_list %}
+      {% if post.title != null %}
+          <a class="sidebar-nav-item{% if page.url == post.url %} active{% endif %}" href="{{ post.url }}">{{ post.title }}</a>
+      {% endif %}
+    {% endfor %}
+
+   <!--  <a class="sidebar-nav-item" href="{{ site.github.repo }}/archive/v{{ site.version }}.zip">Download</a> -->
+    <!-- <a class="sidebar-nav-item" href="{{ site.github.repo }}">GitHub project</a> -->
     <span class="sidebar-nav-item">Currently v{{ site.version }}</span>
   </nav>
-
   <div class="sidebar-item">
+    <p>
+      The site theme is based on <a href="https://twitter.com/mdo" target="_blank">@mdo</a>'s <a href="https://github.com/poole/lanyon" target="_blank">"Lanyon Theme"</a>
+    </p>
     <p>
       &copy; {{ site.time | date: '%Y' }}. All rights reserved.
     </p>
